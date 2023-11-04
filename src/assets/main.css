@@ -1,0 +1,142 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  font-weight: normal;
+}
+
+aside {
+  height: 100vh;
+  box-shadow: 0px 4px 4px 0px #00000026;
+  width: 240px;
+  position: fixed;
+  z-index: 2;
+}
+
+section { /* trocar section por form e mudar para componente pai */
+  margin: 24px 23px 24px 24px;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 12px 0;
+}
+
+main {
+  height: 100vh;
+}
+
+input {
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+  background-color: var(--white);
+  border: 2px solid var(--blue);
+  padding: 12px 11px;
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+input::placeholder {
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--text-placeholder-color);
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--blue);
+}
+
+label.radio {
+  padding: 2px 4px;
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--text-color-input-label);
+}
+
+select {
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+  background-color: var(--white);
+  border: 2px solid var(--blue);
+  padding: 2px 4px;
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+select::-ms-expand {
+  border-radius: 0 0 8px 8px;
+  border: 2px solid var(--blue);
+}
+
+option {
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: var(--text-color-input-label);
+}
+
+label.input-label {
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: var(--text-color-input-label);
+  padding: 0px 4px 8px 0px;
+}
+
+.split-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 36px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 14px 0px;
+}
+
+.radio-grid {
+  margin-top: 16px;
+  display: grid; 
+  grid-template-columns: 2fr 2fr;
+  grid-row-gap: 16px;
+}
+
+.radio-box {
+  display: flex;
+  align-items: center;
+}
+
+.warning {
+  color: var(--text-color-warning);
+}
