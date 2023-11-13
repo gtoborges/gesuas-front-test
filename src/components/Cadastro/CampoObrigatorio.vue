@@ -1,8 +1,8 @@
 <template>
-  <p><slot></slot></p>
+  <label><slot></slot></label>
 </template>
 <style scoped>
-p {
+label {
   padding-top: 4px;
   font-family: Noto Sans JP;
   font-size: 12px;

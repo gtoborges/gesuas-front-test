@@ -3,27 +3,10 @@ import IdentificacaoComponent from '../components/Cadastro/IdentificacaoComponen
 import DocumentosComponent from '../components/Cadastro/DocumentosComponent.vue';
 import EnderecoComponent from '../components/Cadastro/EnderecoComponent.vue';
 import ContatosComponent from '../components/Cadastro/ContatosComponent.vue';
-import VueSweetalert2 from 'vue-sweetalert2';
 
 import { useCadastroStore } from '../stores/CadastroStore';
-import { storeToRefs } from 'pinia';
 
 const cadastroStore = useCadastroStore()
-const { cadastro, camposFaltantes } = storeToRefs(cadastroStore)
-
-const camposObrigatorios = ['nome', 'data_nascimento', 'sexo', 'cor', 'rg', 'cpf', 'bairro', 'logradouro']
-
-const validarDados = () => {
-  camposFaltantes.value = []
-
-  for(let campo of camposObrigatorios) {
-    if(["", null, undefined].includes(cadastroStore.cadastro[campo])) {
-      camposFaltantes.value.push(campo)
-    }
-  }
-
-  if(camposFaltantes.value.length === 0) envidarCadastro()
-}
 
 const envidarCadastro = () => {
   window.alert('Cadastro realizado com sucesso! Mas faltou fazer um modal :(')
@@ -38,8 +21,8 @@ const envidarCadastro = () => {
     <EnderecoComponent/>
     <ContatosComponent/>
     <div class="form-buttons">
-      <button class="cancel">Cancelar</button>
-      <button class="confirm" @click.prevent="validarDados()">Cadastrar</button>
+      <button class="cancel" @click.prevent="">Cancelar</button>
+      <button class="confirm" @click.prevent="cadastroStore.validateAndSend">Cadastrar</button>
     </div>
   </form>
 </template>

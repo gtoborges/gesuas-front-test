@@ -1,13 +1,13 @@
 <script setup>
 import SectionTitle from './SectionTitle.vue';
 import InfoSymbol from './InfoSymbol.vue';
-import CampoObrigatorio from './CampoObrigatorio.vue'
+import CampoObrigatorio from './CampoObrigatorio.vue';
+import { Field } from 'vee-validate';
 import { useCadastroStore } from '../../stores/CadastroStore';
 import { storeToRefs } from 'pinia';
 
 const cadastroStore = useCadastroStore()
-const { cadastro, camposFaltantes } = storeToRefs(cadastroStore)
-
+const { cadastro, camposFaltantes, errors } = storeToRefs(cadastroStore)
 </script>
 <template>
   <section>
@@ -15,26 +15,26 @@ const { cadastro, camposFaltantes } = storeToRefs(cadastroStore)
     <fieldset>
       <div class="input-container" style="margin-top: 0px">
         <label class="input-label">Nome</label>
-        <input type="text" placeholder="Digite o nome" v-model="cadastro.nome">
-        <CampoObrigatorio :class="{ 'warning': camposFaltantes.includes('nome') }">Preenchimento obrigatório</CampoObrigatorio>
+        <input type="text" placeholder="Digite o nome" v-bind="cadastro.nome">
+        <CampoObrigatorio :class="{ 'warning': errors.nome }">Preenchimento obrigatório</CampoObrigatorio>
       </div>
       <div class="input-container">
         <span style="padding-bottom: 8px"><label class="input-label">Nome Social</label><InfoSymbol/></span>
-        <input type="text" placeholder="Digite o nome social" v-model="cadastro.nome_social">
+        <input type="text" placeholder="Digite o nome social" v-bind="cadastro.nome_social">
       </div>
       <div class="split-container">
         <div class="input-container">
           <label class="input-label">Data de nascimento</label>
-          <input v-maska data-maska="##/##/####" type="text" placeholder="01/01/2000" v-model="cadastro.data_nascimento">
-          <CampoObrigatorio :class="{ 'warning': camposFaltantes.includes('data_nascimento') }">Preenchimento obrigatório</CampoObrigatorio>
+          <input v-maska data-maska="##/##/####" type="text" placeholder="01/01/2000" v-bind="cadastro.data_nascimento">
+          <CampoObrigatorio :class="{ 'warning': errors.data_nascimento }">Preenchimento obrigatório</CampoObrigatorio>
         </div>
         <div class="input-container">
           <label class="input-label">Sexo biológico</label>
-          <select v-model="cadastro.sexo">
+          <select v-bind="cadastro.sexo">
             <option value="masculino">Masculino</option>
             <option value="feminino">Feminino</option>
           </select>
-          <CampoObrigatorio :class="{ 'warning': camposFaltantes.includes('sexo') }">Preenchimento obrigatório</CampoObrigatorio>
+          <CampoObrigatorio :class="{ 'warning': errors.sexo }">Preenchimento obrigatório</CampoObrigatorio>
         </div>
       </div>
       <div class="split-container">
@@ -88,7 +88,7 @@ const { cadastro, camposFaltantes } = storeToRefs(cadastroStore)
               <input type="radio" v-model="cadastro.lgbt" value="sim">
               <label class="radio">Sim</label>
             </div>
-            <div class="radio-box" style="margin-left: -170px">
+            <div class="radio-box">
               <input type="radio" v-model="cadastro.lgbt" value="não">
               <label class="radio">Não</label>
             </div>
@@ -98,15 +98,15 @@ const { cadastro, camposFaltantes } = storeToRefs(cadastroStore)
       <div class="split-container">
         <div class="input-container">
           <label class="input-label">Cor/Raça</label>
-          <select v-model="cadastro.cor">
+          <Field name="cor" as="select">
             <option value="branca">Branca</option>
             <option value="preta">Preta</option>
             <option value="parda">Parda</option>
             <option value="indigena">Indígena</option>
             <option value="amarela">Amarela</option>
             <option value="nao_declarado">Não declarada</option>
-          </select>
-          <CampoObrigatorio :class="{ 'warning': camposFaltantes.includes('cor') }">Preenchimento obrigatório</CampoObrigatorio>
+          </Field>
+          <CampoObrigatorio :class="{ 'warning': errors.cor }">Preenchimento obrigatório</CampoObrigatorio>
         </div>
       </div>
     </fieldset>
