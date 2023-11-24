@@ -5,6 +5,7 @@ import CampoObrigatorio from './CampoObrigatorio.vue';
 import { Field } from 'vee-validate';
 import { useCadastroStore } from '../../stores/CadastroStore';
 import { storeToRefs } from 'pinia';
+import BaseInput from '../BaseComponents/BaseInput.vue';
 
 const cadastroStore = useCadastroStore()
 const { cadastro, camposFaltantes, errors } = storeToRefs(cadastroStore)
@@ -13,6 +14,14 @@ const { cadastro, camposFaltantes, errors } = storeToRefs(cadastroStore)
   <section>
     <SectionTitle>Identificação da pessoa</SectionTitle>
     <fieldset>
+      <BaseInput 
+        v-bind="cadastro.nome"
+        type="text"
+        placeholder="Digite o nome"
+        label="Teste input component"
+        name="nome"
+        data-maska="##-##-##-##"
+      />
       <div class="input-container" style="margin-top: 0px">
         <label class="input-label">Nome</label>
         <input type="text" placeholder="Digite o nome" v-bind="cadastro.nome">
